@@ -4,18 +4,6 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: question
-        uri: lb://question-service
-        predicates:
-        - Path=/questions/**
-        filters:
-        - StripPrefix=1
-      - id: auth
-        uri: lb://auth-service
-        predicates:
-        - Path=/login/**
-        filters:
-        - StripPrefix=1
 server:
   port: 9090
 eureka:
