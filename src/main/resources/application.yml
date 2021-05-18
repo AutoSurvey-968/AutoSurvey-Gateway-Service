@@ -4,6 +4,24 @@ spring:
   cloud:
     gateway:
       routes:
+      - id: user
+        uri: lb://user-service
+        predicates:
+        - Path=/users/**
+        filters:
+        - StripPrefix=1
+      - id: analytics
+        uri: lb://analytic-service
+        predicates:
+        - Path=/reports/**
+        filters:
+        - StripPrefix=1
+      - id: test
+        uri: http://www.google.com
+        predicates:
+        - Path=/test/**
+        filters:
+        - StripPrefix=1
 server:
   port: 9090
 eureka:
