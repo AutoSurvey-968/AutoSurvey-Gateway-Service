@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+server:
+  port: 9090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  # if we don't say anything in 2 seconds, there is something wrong with me
+  instance:
+    lease-expiration-duration-in-seconds: 2
+    # heartbeat every second
+    lease-renewal-interval-in-seconds: 1
