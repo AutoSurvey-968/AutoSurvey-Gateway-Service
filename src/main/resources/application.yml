@@ -23,13 +23,19 @@ spring:
         filters:
         - StripPrefix=1
       - id: surveys
-        uri: lb://survey-service
+        uri: lb://survey-service:8081
         predicates:
         - Path=/surveys/**
         filters:
         - StripPrefix=1
+      - id: io-service
+        uri: lb://io-service:8083
+        predicates:
+        - Path=/email/**
+        filters:
+        - StripPrefix=1
       - id: submission
-        uri: lb://submission-service
+        uri: lb://submission-service:8082
         predicates:
         - Path=/responses/**
         filters:
