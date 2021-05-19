@@ -22,6 +22,12 @@ spring:
         - Path=/test/**
         filters:
         - StripPrefix=1
+      - id: surveys
+        uri: lb://survey-service
+        predicates:
+        - Path=/surveys/**
+        filters:
+        - StripPrefix=1
 server:
   port: 9090
 eureka:
