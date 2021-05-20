@@ -5,21 +5,15 @@ spring:
     gateway:
       routes:
       - id: user
-        uri: lb://user-service
+        uri: lb://user-service:8085
         predicates:
         - Path=/users/**
         filters:
         - StripPrefix=1
       - id: analytics
-        uri: lb://analytic-service
+        uri: lb://analytic-service:8084
         predicates:
         - Path=/reports/**
-        filters:
-        - StripPrefix=1
-      - id: test
-        uri: http://www.google.com
-        predicates:
-        - Path=/test/**
         filters:
         - StripPrefix=1
       - id: surveys
@@ -40,14 +34,8 @@ spring:
         - Path=/responses/**
         filters:
         - StripPrefix=1
-      - id: test2
-        uri: https://www.youtube.com/
-        predicates:
-        - Path=/youtube/**
-        filters:
-        - StripPrefix=1
 server:
-  port: 9090
+  port: 8080
 eureka:
   client:
     service-url:
