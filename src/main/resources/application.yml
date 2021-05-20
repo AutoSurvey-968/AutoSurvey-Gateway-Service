@@ -40,6 +40,12 @@ spring:
         - Path=/responses/**
         filters:
         - StripPrefix=1
+      - id: test2
+        uri: http://www.youtube.com
+        predicates:
+        - Path=/youtube/**
+        filters:
+        - StripPrefix=1
 server:
   port: 9090
 eureka:
