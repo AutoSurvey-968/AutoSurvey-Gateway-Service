@@ -41,7 +41,7 @@ spring:
         filters:
         - StripPrefix=1
       - id: test2
-        uri: http://www.youtube.com
+        uri: https://www.youtube.com/watch?v=ulmFJdwXCKA
         predicates:
         - Path=/youtube/**
         filters:
