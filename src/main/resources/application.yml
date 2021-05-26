@@ -3,39 +3,70 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+    globalcors:
+      cors-configurations:
+        "[/**]":
+          allowedOrigins: "https://localhost:4200"
+          allowedMethods:
+            - GET
+            - POST
+            - DELETE
+            - PUT
+            - PATCH
       routes:
-      - id: user
-        uri: lb://user-service
-        predicates:
-        - Path=/users/**
-        filters:
-        - StripPrefix=1
-      - id: analytics
-        uri: lb://analytic-service
-        predicates:
-        - Path=/reports/**
-        filters:
-        - StripPrefix=1
-      - id: surveys
-        uri: lb://survey-service
-        predicates:
-        - Path=/surveys/**
-        filters:
-        - StripPrefix=1
-      - id: io-service
-        uri: lb://io-service
-        predicates:
-        - Path=/email/**
-        filters:
-        - StripPrefix=1
-      - id: submission
-        uri: lb://submission-service
-        predicates:
-        - Path=/responses/**
-        filters:
-        - StripPrefix=1
+        - id: user
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: MyCircuitBreaker
+                fallbackUri: forward:/error
+        - id: analytics
+          uri: lb://analytic-service
+          predicates:
+            - Path=/reports/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: MyCircuitBreaker
+                fallbackUri: forward:/error
+        - id: surveys
+          uri: lb://survey-service
+          predicates:
+            - Path=/surveys/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: MyCircuitBreaker
+                fallbackUri: forward:/error
+        - id: io-service
+          uri: lb://io-service
+          predicates:
+            - Path=/email/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: MyCircuitBreaker
+                fallbackUri: forward:/error
+        - id: submission
+          uri: lb://submission-service
+          predicates:
+            - Path=/responses/**
+          filters:
+            - StripPrefix=1
+            - name: CircuitBreaker
+              args:
+                name: MyCircuitBreaker
+                fallbackUri: forward:/error
+
 server:
-  port: 8080
+  port: 9090
 eureka:
   client:
     service-url:
