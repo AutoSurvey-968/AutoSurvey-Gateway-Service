@@ -2,44 +2,40 @@
 
 ## Project Description
 
-Here goes your awesome project description!
+The gateway service serves as the single point that a user is able to directly interface with the micro-service application. All requests from the user goes to the gateway first.
 
 ## Technologies Used
 
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+- Spring Cloud Gateway - version 3.0.2
+- Spring Cloud Eureka - version 3.0.2
+- Spring Boot WebFlux - version 5.3.7
 
 ## Features
 
 List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+
+- Routes the user requests to the micro-services
 
 To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+
+- Implements circuit breaking if a micro-service throws an error
 
 ## Getting Started
-   
-(include git clone command)
-(include all environment setup steps)
 
-> Be sure to include BOTH Windows and Unix command  
-> Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
+- Clone the git repository (Https)
 
-- All the `code` required to get started
-- Images of what it should look like
+  - `git clone https://github.com/AutoSurvey-968/AutoSurvey-Gateway-Service.git [local directory]`
+
+- Eureka URL (if you do not plan on serving application locally), set an Environment Variable named `EUREKA_URL` to the URI that you are exposing for the application.
+  - If using Docker, pass the `EUREKA_URL` as an argument when you create the container containing the gateway
+  - `docker create (image) -e [EUREKA_URL]`
 
 ## Usage
 
-> Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+Once you've successfully installed and configured the gateway, continue onto the discovery service which will allow your micro services to be recognized by the gateway.
 
 ## Contributors
 
-> Here list the people who have contributed to this project. (ignore this section, if its a solo project)
-
-## License
-
-This project uses the following license: [<license_name>](<link>).
+- Dakota
+- Parker
+- Tyler
