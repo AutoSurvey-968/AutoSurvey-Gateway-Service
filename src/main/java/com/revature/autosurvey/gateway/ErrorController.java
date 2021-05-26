@@ -12,6 +12,6 @@ public class ErrorController {
   @GetMapping(value="error")
   public Mono<ResponseEntity<String>> handleError() {
 
-    return Mono.just(ResponseEntity.status(500).body("Service is currently down, please try again in a few minutes."));
+    return Mono.just(ResponseEntity.status(503).body("Service is currently down, please try again in a few minutes."));
   }
 }
