@@ -6,13 +6,12 @@ spring:
     globalcors:
       cors-configurations:
         "[/**]":
-          allowedOrigins: "https://localhost:4200"
+          allowedOrigins: ${CLIENT_URL:http://localhost:4200/}
           allowedMethods:
             - GET
             - POST
             - DELETE
             - PUT
-            - PATCH
       routes:
         - id: user
           uri: lb://user-service
@@ -66,7 +65,7 @@ spring:
                 fallbackUri: forward:/error
 
 server:
-  port: 9090
+  port: 8080
 eureka:
   client:
     service-url:
