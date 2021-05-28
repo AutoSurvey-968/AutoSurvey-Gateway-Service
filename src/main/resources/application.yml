@@ -12,6 +12,7 @@ spring:
               - POST
               - DELETE
               - PUT
+              - OPTIONS
         add-to-simple-url-handler-mapping: true
       routes:
         - id: user
