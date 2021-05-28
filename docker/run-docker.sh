@@ -13,6 +13,6 @@ fi
 
 #start gateway-service container
 docker container run -d --name gateway-service --network autosurvey-network \
-    -p 80:8080 autosurvey/gateway-service
+    -p 80:8080 -e EUREKA_URL autosurvey/gateway-service
 
 #Changed permission
