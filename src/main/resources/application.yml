@@ -3,17 +3,17 @@ spring:
     name: gateway-service
   cloud:
     gateway:
-      # globalcors:
-      #   cors-configurations:
-      #     '[/**]':
-      #       allowedOrigins: "*"
-      #       allowedMethods:
-      #         - GET
-      #         - POST
-      #         - DELETE
-      #         - PUT
-      #         - OPTIONS
-      #   add-to-simple-url-handler-mapping: true
+        globalcors:
+          cors-configurations:
+            '[/**]':
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - DELETE
+                - PUT
+                - OPTIONS
+          add-to-simple-url-handler-mapping: true
       routes:
         - id: user
           uri: lb://user-service
