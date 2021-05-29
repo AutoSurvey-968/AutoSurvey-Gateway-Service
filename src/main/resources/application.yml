@@ -8,7 +8,7 @@ spring:
           '[/**]':
             allowedOrigins: "http://localhost:4200, http://18.218.203.150:8080"
             allowedHeaders: "*"
-            allowedCredentials : true
+            allowCredentials: true
             allowedMethods:
               - GET
               - POST
