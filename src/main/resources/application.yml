@@ -9,6 +9,7 @@ spring:
             allowedOrigins: "http://localhost:4200, http://18.218.203.150:8080"
             allowedHeaders:
               - content-type
+              - withCredentials
             allowedMethods:
               - GET
               - POST
