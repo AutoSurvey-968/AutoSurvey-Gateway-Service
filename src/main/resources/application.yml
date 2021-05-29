@@ -22,7 +22,6 @@ spring:
           predicates:
             - Path=/users/**
           filters:
-            - AddResponseHeader=Access-Control-Allow-Credentials
             - StripPrefix=1
             - name: CircuitBreaker
               args:
