@@ -2,6 +2,8 @@ package com.revature.autosurvey.gateway;
 
 import java.time.Duration;
 
+import javax.ws.rs.WebApplicationException;
+
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
@@ -27,7 +29,7 @@ public class MyCircuitBreaker {
             		  .minimumNumberOfCalls(10)
             		  .slidingWindowType(SlidingWindowType.TIME_BASED)
             		  .slidingWindowSize(5)
-            		  .recordExceptions(Throwable.class)
+            		  .recordException(e -> true)
             		  .build())
             .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build()).build());
   }

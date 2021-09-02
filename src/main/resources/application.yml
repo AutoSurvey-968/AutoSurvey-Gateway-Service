@@ -28,6 +28,8 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/userserror
+                statusCodes:
+                  - 500
         - id: analytics
           uri: lb://analytic-service
           predicates:
