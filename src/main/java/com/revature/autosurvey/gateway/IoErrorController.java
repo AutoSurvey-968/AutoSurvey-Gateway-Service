@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Mono;
 @RestController
-@RequestMapping("email/ioerror")
+@RequestMapping("ioerror")
 
 public class IoErrorController {
 @PostMapping
