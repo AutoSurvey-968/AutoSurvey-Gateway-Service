@@ -27,7 +27,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/userserror
         - id: analytics
           uri: lb://analytic-service
           predicates:
@@ -37,7 +37,17 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/analyticserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
         - id: surveys
           uri: lb://survey-service
           predicates:
@@ -47,7 +57,17 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/surveyserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
         - id: io-service
           uri: lb://io-service
           predicates:
@@ -57,7 +77,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/ioerror
         - id: submission
           uri: lb://submission-service
           predicates:
@@ -67,7 +87,17 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/submissionserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
 
 server:
   port: 8080
