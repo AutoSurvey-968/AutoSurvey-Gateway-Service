@@ -38,6 +38,16 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/analyticserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
         - id: surveys
           uri: lb://survey-service
           predicates:
