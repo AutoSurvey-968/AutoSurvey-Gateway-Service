@@ -1,6 +1,7 @@
 package com.revature.autosurvey.gateway;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -10,12 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
+@RequestMapping("surveys/error")
 public class SurveyErrorController {
 
-	@RestController
-	@RequestMapping("users/error")
-	public class ErrorController {
-
+	
 	  @GetMapping
 	  public ResponseEntity<Flux<Object>> handleGet() {
 	    return ResponseEntity.ok(Flux.empty());
@@ -30,5 +30,10 @@ public class SurveyErrorController {
 	  public Mono<ResponseEntity<Object>> handlePut() {
 	      return Mono.just(ResponseEntity.status(503).build());
 	  }
-	}
+	 
+	  @DeleteMapping
+	  public Mono<ResponseEntity<Object>> handleDelete() {
+	      return Mono.just(ResponseEntity.status(503).build());
+	  }
+	
 }
