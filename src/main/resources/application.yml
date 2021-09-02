@@ -27,7 +27,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/userserror
         - id: analytics
           uri: lb://analytic-service
           predicates:
@@ -37,7 +37,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/analyticserror
         - id: surveys
           uri: lb://survey-service
           predicates:
@@ -47,7 +47,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/surveyserror
         - id: io-service
           uri: lb://io-service
           predicates:
@@ -57,7 +57,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/ioerror
         - id: submission
           uri: lb://submission-service
           predicates:
@@ -67,7 +67,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/error
+                fallbackUri: forward:/submissionserror
 
 server:
   port: 8080
