@@ -58,6 +58,16 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/surveyserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
         - id: io-service
           uri: lb://io-service
           predicates:
@@ -78,6 +88,16 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/submissionserror
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
 
 server:
   port: 8080
