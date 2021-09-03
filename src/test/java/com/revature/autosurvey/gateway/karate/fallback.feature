@@ -1,9 +1,7 @@
 
 Feature: Make call to Fallback URL and get Fallback Responses
-Background:
-  	* def fallbackUrl = 'http://localhost:8080/fallback'
-  	
-  Scenario: Perform a Get request on the Fallback
+
+Scenario: Perform a Get request on the Fallback
     Given url fallbackUrl
     When method get
     Then status 200
