@@ -30,6 +30,17 @@ spring:
                 fallbackUri: forward:/userserror
                 statusCodes:
                   - 500
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
+
         - id: analytics
           uri: lb://analytic-service
           predicates:
@@ -40,6 +51,8 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/analyticserror
+                statusCodes:
+                  - 500
             - name: Retry
               args:
                 retries: 3
@@ -60,6 +73,8 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/surveyserror
+                statusCodes:
+                  - 500
             - name: Retry
               args:
                 retries: 3
@@ -80,6 +95,18 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/ioerror
+                statusCodes:
+                  - 500
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: false
         - id: submission
           uri: lb://submission-service
           predicates:
@@ -90,6 +117,8 @@ spring:
               args:
                 name: MyCircuitBreaker
                 fallbackUri: forward:/submissionserror
+                statusCodes:
+                  - 500
             - name: Retry
               args:
                 retries: 3
