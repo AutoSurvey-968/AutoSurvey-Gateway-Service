@@ -27,7 +27,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/userserror
+                fallbackUri: forward:/fallback
                 statusCodes:
                   - 500
             - name: Retry
@@ -50,7 +50,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/analyticserror
+                fallbackUri: forward:/fallback
                 statusCodes:
                   - 500
             - name: Retry
@@ -72,7 +72,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/surveyserror
+                fallbackUri: forward:/fallback
                 statusCodes:
                   - 500
             - name: Retry
@@ -94,7 +94,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/ioerror
+                fallbackUri: forward:/fallback
                 statusCodes:
                   - 500
             - name: Retry
@@ -116,7 +116,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: MyCircuitBreaker
-                fallbackUri: forward:/submissionserror
+                fallbackUri: forward:/fallback
                 statusCodes:
                   - 500
             - name: Retry
