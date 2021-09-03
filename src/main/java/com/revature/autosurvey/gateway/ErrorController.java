@@ -1,19 +1,36 @@
 package com.revature.autosurvey.gateway;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
-@Controller
+@RestController
+@RequestMapping("fallback")
 public class ErrorController {
-
-  @GetMapping(value="error")
-  public Mono<ResponseEntity<String>> handleError() {
-
-    return Mono.just(ResponseEntity.status(503).body("Service is currently down, please try again in a few minutes."));
-  }
+	
+	@GetMapping
+	public ResponseEntity<Flux<Object>> getError() {
+		return ResponseEntity.ok(Flux.empty());
+	}
+	
+	@PutMapping
+	public ResponseEntity<Object> putError(){
+		return ResponseEntity.status(503).build();
+	}
+	
+	@PostMapping
+	public ResponseEntity<Object> postError(){
+		return ResponseEntity.status(503).build();
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<Object> deleteError(){
+		return ResponseEntity.status(503).build();
+	}
 }
-
-
